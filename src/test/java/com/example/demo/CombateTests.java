@@ -31,6 +31,7 @@ public class CombateTests {
         b1.recibirDisparo(s1.getDisparar());
 
         assert b1.getVida() == 0;
+        assert b1.estaVivo() == false;
 
         
     }
@@ -51,5 +52,17 @@ public class CombateTests {
 
 
     }
+
+
+    @Test
+    void soldado_adquiere_escudo_test(){
+        Soldado s1 = new Soldado();
+
+        s1.setVida(2);
+        s1.setEscudo(50);
+        s1.adquirirEscudo(s1.getEscudo());
+
+        assert s1.getVida() == 2.5;
+    }    
 
 }
