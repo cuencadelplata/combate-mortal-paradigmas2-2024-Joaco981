@@ -2,7 +2,6 @@ package com.example.demo;
 
 
 public class Combate {
-    private int disparar;
     private double vida;
     private int escudo;
     private double daño;
@@ -15,13 +14,8 @@ public class Combate {
         vida = valor;
     }
 
-
-    public int getDisparar() {
-        return disparar;
-    }
-
-    public void setDisparar(int valor) {
-        disparar = valor;
+    public int disparar() {
+        return 1;
     }
 
     public int getEscudo() {
@@ -41,16 +35,16 @@ public class Combate {
     }
 
 
-    public void recibirDisparo(int disparar) {
+    public void recibirDisparo() {
         double vida = getVida();
-        vida -= disparar; 
+        vida -= 1; 
         setVida(vida);
     }
 
-    public void recibirDisparoConEscudo(int disparar){
+    public void recibirDisparoConEscudo(){
         double vida = getVida();
         double escudo = getEscudo();
-        vida -= disparar - (escudo / 100);
+        vida -= 1 - (escudo / 100);
         setVida(vida);
 
     }
@@ -64,7 +58,5 @@ public class Combate {
     public boolean estaVivo(){
         return vida > 0;
     }
-
-
 
 }

@@ -1,6 +1,7 @@
 package com.example.demo;
 
 public class Soldado extends Combate {
-    
-
+    public Soldado() {
+        setVida(1); 
+    }
 }

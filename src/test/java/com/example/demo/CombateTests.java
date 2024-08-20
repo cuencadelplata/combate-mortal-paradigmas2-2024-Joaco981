@@ -6,19 +6,46 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class CombateTests {
     
+    @Test
+    void todos_pueden_disparar_test(){
+        Soldado s1 = new Soldado();
+        Tanque t1 = new Tanque();
+        Buque b1 = new Buque();
+
+        s1.disparar();
+        t1.disparar();
+        b1.disparar();
+
+    }
+
+    @Test
+    void todos_pueden_recibir_un_disparo_test(){
+        Soldado s1 = new Soldado();
+        Tanque t1 = new Tanque();
+        Buque b1 = new Buque();
+        
+        s1.recibirDisparo();
+        t1.recibirDisparo();
+        b1.recibirDisparo();
+
+        assert s1.getVida() == 0;
+        assert t1.getVida() == 1;
+        assert b1.getVida() == 2;
+
+    }
+
 
     @Test
     void soldado_matar_tanque_con_2_tiros_test(){
         Soldado s1 = new Soldado();
         Tanque t1 = new Tanque();
 
-        t1.setVida(2);
-        s1.setDisparar(2);
-        t1.recibirDisparo(s1.getDisparar());
-
-        assert t1.estaVivo() == false;
-
+        s1.disparar();
+        t1.recibirDisparo();
+        s1.disparar();
+        t1.recibirDisparo();
         
+        assert t1.estaVivo() == false;  
     }
 
     @Test
@@ -26,9 +53,12 @@ public class CombateTests {
         Soldado s1 = new Soldado();
         Buque b1 = new Buque();
 
-        b1.setVida(3);
-        s1.setDisparar(3);
-        b1.recibirDisparo(s1.getDisparar());
+        s1.disparar();
+        b1.recibirDisparo();
+        s1.disparar();
+        b1.recibirDisparo();
+        s1.disparar();
+        b1.recibirDisparo();
 
         assert b1.getVida() == 0;
         assert b1.estaVivo() == false;
@@ -36,20 +66,15 @@ public class CombateTests {
         
     }
 
-
     @Test
-    void soldado_dispara_a_tanque_con_50_por_ciento_de_escudo_test(){
+    void preguntar_si_esta_vivo_test(){
         Soldado s1 = new Soldado();
         Tanque t1 = new Tanque();
+        Buque b1 = new Buque();
 
-        t1.setVida(2);
-        t1.setEscudo(50);
-        
-        s1.setDisparar(1);
-        t1.recibirDisparoConEscudo(s1.getDisparar());
-
-        assert t1.getVida() == 1.5;
-
+        s1.estaVivo();
+        t1.estaVivo();
+        b1.estaVivo();
 
     }
 
@@ -58,11 +83,25 @@ public class CombateTests {
     void soldado_adquiere_escudo_test(){
         Soldado s1 = new Soldado();
 
-        s1.setVida(2);
         s1.setEscudo(50);
         s1.adquirirEscudo(s1.getEscudo());
 
-        assert s1.getVida() == 2.5;
-    }    
+        assert s1.getVida() == 1.5;
+    }  
+
+    @Test
+    void soldado_dispara_a_tanque_con_50_por_ciento_de_escudo_test(){
+        Soldado s1 = new Soldado();
+        Tanque t1 = new Tanque();
+
+        t1.setEscudo(50);    
+        s1.disparar();
+        t1.recibirDisparoConEscudo();
+
+        assert t1.getVida() == 1.5;
+
+
+    }
+  
 
 }
