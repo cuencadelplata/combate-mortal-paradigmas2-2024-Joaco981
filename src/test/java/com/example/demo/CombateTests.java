@@ -12,9 +12,9 @@ public class CombateTests {
         Tanque t1 = new Tanque();
         Buque b1 = new Buque();
 
-        s1.disparar();
-        t1.disparar();
-        b1.disparar();
+        s1.disparar(t1);
+        t1.disparar(s1);
+        b1.disparar(b1);
 
     }
 
@@ -24,11 +24,9 @@ public class CombateTests {
         Tanque t1 = new Tanque();
         Buque b1 = new Buque();
         
-        s1.recibirDisparo();
-        t1.recibirDisparo();
-        b1.recibirDisparo();
+        s1.disparar(t1);
+        s1.disparar(b1);
 
-        assert s1.getVida() == 0;
         assert t1.getVida() == 1;
         assert b1.getVida() == 2;
 
@@ -40,10 +38,8 @@ public class CombateTests {
         Soldado s1 = new Soldado();
         Tanque t1 = new Tanque();
 
-        s1.disparar();
-        t1.recibirDisparo();
-        s1.disparar();
-        t1.recibirDisparo();
+        s1.disparar(t1);
+        s1.disparar(t1);
         
         assert t1.estaVivo() == false;  
     }
@@ -53,12 +49,9 @@ public class CombateTests {
         Soldado s1 = new Soldado();
         Buque b1 = new Buque();
 
-        s1.disparar();
-        b1.recibirDisparo();
-        s1.disparar();
-        b1.recibirDisparo();
-        s1.disparar();
-        b1.recibirDisparo();
+        s1.disparar(b1);
+        s1.disparar(b1);
+        s1.disparar(b1);
 
         assert b1.getVida() == 0;
         assert b1.estaVivo() == false;
@@ -95,12 +88,22 @@ public class CombateTests {
         Tanque t1 = new Tanque();
 
         t1.setEscudo(50);    
-        s1.disparar();
-        t1.recibirDisparoConEscudo();
+        s1.disparar(t1);
 
         assert t1.getVida() == 1.5;
 
 
+    }
+
+    @Test
+    void chucknorris_es_inmortal_test(){
+        ChuckNorris ch1 = new ChuckNorris();
+        Tanque t1 = new Tanque();
+
+        t1.disparar(ch1);
+        ch1.recibirDisparo();
+
+        assert ch1.estaVivo() == true;
     }
   
 

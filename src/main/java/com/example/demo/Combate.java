@@ -14,16 +14,8 @@ public class Combate {
         vida = valor;
     }
 
-    public int disparar() {
-        return 1;
-    }
-
-    public int getEscudo() {
-        return escudo;
-    }
-
-    public void setEscudo(int valor) {
-        escudo = valor;
+    public void disparar(Combate objetivo) {
+        objetivo.recibirDisparo();
     }
 
     public double getDaño() {
@@ -36,18 +28,15 @@ public class Combate {
 
 
     public void recibirDisparo() {
-        double vida = getVida();
-        vida -= 1; 
-        setVida(vida);
+        var danio = 1;
+
+        if(getEscudo() != null){
+            danio = danio - e1.getEscudo();
+        }
+        
+        setVida(getVida()-1);
     }
 
-    public void recibirDisparoConEscudo(){
-        double vida = getVida();
-        double escudo = getEscudo();
-        vida -= 1 - (escudo / 100);
-        setVida(vida);
-
-    }
 
     public void adquirirEscudo(double escudo) {
         double vida = getVida();
