@@ -69,15 +69,20 @@ public class CombateTests {
         t1.estaVivo();
         b1.estaVivo();
 
+        assert s1.estaVivo() == true;
+        assert t1.estaVivo() == true;
+        assert b1.estaVivo() == true;
+
+
     }
-
-
+    
     @Test
     void soldado_adquiere_escudo_test(){
         Soldado s1 = new Soldado();
+        Escudo e1 = new Escudo();
 
-        s1.setEscudo(50);
-        s1.adquirirEscudo(s1.getEscudo());
+
+        s1.adquirirEscudo(e1.getEscudo());
 
         assert s1.getVida() == 1.5;
     }  
@@ -86,24 +91,27 @@ public class CombateTests {
     void soldado_dispara_a_tanque_con_50_por_ciento_de_escudo_test(){
         Soldado s1 = new Soldado();
         Tanque t1 = new Tanque();
+        Escudo e1 = new Escudo();
 
-        t1.setEscudo(50);    
+
+        t1.adquirirEscudo(e1.getEscudo());    
         s1.disparar(t1);
 
         assert t1.getVida() == 1.5;
-
-
     }
 
     @Test
     void chucknorris_es_inmortal_test(){
-        ChuckNorris ch1 = new ChuckNorris();
+        ChuckNorris ch = new ChuckNorris();
         Tanque t1 = new Tanque();
+        Soldado s1 = new Soldado();
+        Buque b1 = new Buque();
 
-        t1.disparar(ch1);
-        ch1.recibirDisparo();
+        s1.disparar(ch);
+        b1.disparar(ch);
+        t1.disparar(ch);
 
-        assert ch1.estaVivo() == true;
+        assert ch.estaVivo() == true;
     }
   
 
